@@ -73,6 +73,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [react-native-onboarding](modules/onboarding)
 - [react-native-typeform-webhook](modules/typeform-webhook)
 - [react-native-mixpanel-analytics](modules/mixpanel-analytics)
+- [react-native-privacy-policy-webview](modules/privacy-policy-webview)
 
 # Getting started: Frontend
 
