@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8017a47024c14931930da6ca6d0a70c0137bc5e22c37b86c67d905e75c6f0b9d"
+            "sha256": "bb705c3a5bb2b297c95d02d7a971f8e078dbdf81ecdcc89dc5439aa8123667da"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -63,6 +63,10 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==5.3.3"
+        },
+        "cb-django-calendly": {
+            "editable": true,
+            "path": "./modules/django_calendly"
         },
         "cb-django-files": {
             "editable": true,
@@ -1109,7 +1113,6 @@
             "version": "==0.5.0"
         },
         "tablib": {
-            "extras": [],
             "hashes": [
                 "sha256:9821caa9eca6062ff7299fa645e737aecff982e6b2b42046928a6413c8dabfd9",
                 "sha256:f6661dfc45e1d4f51fa8a6239f9c8349380859a5bfaa73280645f046d6c96e33"
