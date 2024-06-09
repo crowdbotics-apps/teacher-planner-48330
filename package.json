@@ -18,6 +18,7 @@
     "@modules/faq": "file:./modules/faq",
     "@modules/image-gallery": "file:./modules/image-gallery/",
     "@modules/maps": "file:./modules/maps/",
+    "@modules/onboarding": "file:./modules/onboarding/",
     "@modules/social-feed": "file:./modules/social-feed",
     "@modules/terms-and-conditions": "file:./modules/terms-and-conditions",
     "@react-native-camera-roll/camera-roll": "5.0.2",
