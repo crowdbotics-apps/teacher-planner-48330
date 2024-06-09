@@ -71,6 +71,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [react-native-image-gallery](modules/image-gallery)
 - [react-native-maps](modules/maps)
 - [react-native-onboarding](modules/onboarding)
+- [react-native-typeform-webhook](modules/typeform-webhook)
 
 # Getting started: Frontend
 
