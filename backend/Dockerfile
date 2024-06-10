@@ -1,30 +1,37 @@
-FROM crowdbotics/cb-django:3.9-slim-buster AS build
+FROM python:3.8-slim as base
 
-# Copy dependency management files and install app packages to /.venv
-COPY ./Pipfile ./Pipfile.lock /
-COPY ./modules/ /modules/
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
+# libpq-dev and python3-dev help with psycopg2
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends python3-dev libpq-dev gcc curl \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
+  # You can add additional steps to the build by appending commands down here using the
+  # format `&& <command>`. Remember to add a `\` at the end of LOC 12.
+  # WARNING: Changes to this file may cause unexpected behaviors when building the app.
+  # Change it at your own risk.
 
 
-FROM crowdbotics/cb-django:3.9-slim-buster AS release
-ARG SECRET_KEY
-
-# Set Working directory
 WORKDIR /opt/webapp
+COPY Pipfile* /opt/webapp/
 
-# Add runtime user with respective access permissions
-RUN groupadd -r django \
-  && useradd -d /opt/webapp -r -g django django \
-  && chown django:django -R /opt/webapp
-USER django
+RUN pip3 install --no-cache-dir -q 'pipenv==2018.11.26' 
+RUN pipenv install --deploy --system
+COPY . /opt/webapp
 
-# Copy virtual env from build stage
-COPY --chown=django:django --from=build /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
+FROM base as release
 
-# Copy app source
-COPY --chown=django:django . .
+COPY --from=base /root/.local /root/.local
+COPY --from=base /opt/webapp/manage.py /opt/webapp/manage.py
 
-# Collect static files and serve app
+
+WORKDIR /opt/webapp
+ENV PATH=/root/.local/bin:$PATH
+ARG SECRET_KEY 
 RUN python3 manage.py collectstatic --no-input
+
+# Run the image as a non-root user
+RUN adduser --disabled-password --gecos "" django
+USER django
+# Collect static files and serve app
+#RUN python3 manage.py collectstatic --no-input
 CMD waitress-serve --port=$PORT teacher_planner_48330.wsgi:application
