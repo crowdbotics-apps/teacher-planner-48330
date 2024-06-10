@@ -33,10 +33,4 @@ pipenv = "*"
 django-import-export = "*"
 drf-spectacular = "~=0.26.4"
 dj-rest-auth = "==5.0.1"
-cb-django-files = {editable = true, path = "./modules/django_files"}
-cb-django-calendly = {editable = true, path = "./modules/django_calendly"}
-cb-django-core = {editable = true, path = "./modules/django_core"}
-cb-django-disqus = {editable = true, path = "./modules/django_disqus"}
-cb-django-openai = {editable = true, path = "./modules/django_openai"}
-cb-django-ocr = {editable = true, path = "./modules/django_ocr"}
-cb-terms-and-conditions = {editable = true, path = "./modules/terms_and_conditions"}
+
