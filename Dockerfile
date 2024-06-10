@@ -1,5 +1,9 @@
 FROM crowdbotics/cb-django:3.9-slim-buster AS build
+# Install Python 3.8 and other dependencies
+RUN apt-get update && apt-get install -y python3.8 python3.8-venv python3.8-dev
 
+# Ensure Python 3.8 is the default
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
 # Copy dependency management files and install app packages to /.venv
 COPY backend/Pipfile backend/Pipfile.lock /
 COPY backend/modules/ /modules/
