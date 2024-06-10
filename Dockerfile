@@ -31,7 +31,7 @@ ENV PATH="/.venv/bin:$PATH"
 COPY --chown=django:django ./backend .
 
 # Copy web build from  rn_web_build stage
-COPY --chown=django:django --from=rn_web_build /tmp/web_build/backend/web_build ./web_build
+#COPY --chown=django:django --from=rn_web_build /tmp/web_build/backend/web_build ./web_build
 
 # Collect static files and serve app
 RUN python3 manage.py collectstatic --no-input
